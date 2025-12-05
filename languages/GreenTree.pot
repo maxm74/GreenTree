@@ -1,0 +1,107 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tgtree.btok.caption
+msgctxt "tgtree.btok.caption"
+msgid "&Ok"
+msgstr ""
+
+#: tgtree.caption
+msgid "About Green Tree..."
+msgstr ""
+
+#: tgtree.label1.caption
+msgid "Green Tree Project"
+msgstr ""
+
+#: tgtree.label2.caption
+msgid "Version 2.0"
+msgstr ""
+
+#: tgtree.label3.caption
+msgid "(c) 2005-2025 Massimo Magnano"
+msgstr ""
+
+#: tgtree.menuabout.caption
+msgid "Info..."
+msgstr ""
+
+#: tgtree.menuclose.caption
+msgid "Close"
+msgstr ""
+
+#: tgtree.menuhibernate.caption
+msgid "Hibernate..."
+msgstr ""
+
+#: tgtree.menulock.caption
+msgid "Lock..."
+msgstr ""
+
+#: tgtree.menulogout.caption
+msgid "Log Out..."
+msgstr ""
+
+#: tgtree.menureboot.caption
+msgid "Reboot..."
+msgstr ""
+
+#: tgtree.menushutdisable.caption
+msgid "Cancel..."
+msgstr ""
+
+#: tgtree.menushutdown.caption
+msgctxt "tgtree.menushutdown.caption"
+msgid "Shut Down..."
+msgstr ""
+
+#: tgtree.menushutdownm.caption
+msgctxt "tgtree.menushutdownm.caption"
+msgid "Shut Down..."
+msgstr ""
+
+#: tgtree.menususpend.caption
+msgid "Suspend..."
+msgstr ""
+
+#: tgtree_timerform.btok.caption
+msgctxt "tgtree_timerform.btok.caption"
+msgid "&Ok"
+msgstr ""
+
+#: tgtree_timerform.btok1.caption
+msgid "&Cancel"
+msgstr ""
+
+#: tgtree_timerform.caption
+msgid "Timer..."
+msgstr ""
+
+#: tgtree_timerform.cbforce.caption
+msgid "Force"
+msgstr ""
+
+#: tgtree_timerform.cbintype.text
+msgid "minutes"
+msgstr ""
+
+#: tgtree_timerform.eddate.text
+msgid "edDate"
+msgstr ""
+
+#: tgtree_timerform.edtime.text
+msgid "edTime"
+msgstr ""
+
+#: tgtree_timerform.rbdatetime.caption
+msgid "Date / Time"
+msgstr ""
+
+#: tgtree_timerform.rbin.caption
+msgid "In "
+msgstr ""
+
+#: tgtree_timerform.rbnow.caption
+msgid "Now"
+msgstr ""
+

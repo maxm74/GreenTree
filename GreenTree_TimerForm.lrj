@@ -1,0 +1,12 @@
+{"version":1,"strings":[
+{"hash":3954366,"name":"tgtree_timerform.caption","sourcebytes":[84,105,109,101,114,46,46,46],"value":"Timer..."},
+{"hash":20480,"name":"tgtree_timerform.rbin.caption","sourcebytes":[73,110,32],"value":"In "},
+{"hash":112832565,"name":"tgtree_timerform.edtime.text","sourcebytes":[101,100,84,105,109,101],"value":"edTime"},
+{"hash":11099,"name":"tgtree_timerform.btok.caption","sourcebytes":[38,79,107],"value":"&Ok"},
+{"hash":177752476,"name":"tgtree_timerform.btok1.caption","sourcebytes":[38,67,97,110,99,101,108],"value":"&Cancel"},
+{"hash":112765093,"name":"tgtree_timerform.eddate.text","sourcebytes":[101,100,68,97,116,101],"value":"edDate"},
+{"hash":56567365,"name":"tgtree_timerform.rbdatetime.caption","sourcebytes":[68,97,116,101,32,47,32,84,105,109,101],"value":"Date / Time"},
+{"hash":67488435,"name":"tgtree_timerform.cbintype.text","sourcebytes":[109,105,110,117,116,101,115],"value":"minutes"},
+{"hash":21863,"name":"tgtree_timerform.rbnow.caption","sourcebytes":[78,111,119],"value":"Now"},
+{"hash":5073045,"name":"tgtree_timerform.cbforce.caption","sourcebytes":[70,111,114,99,101],"value":"Force"}
+]}

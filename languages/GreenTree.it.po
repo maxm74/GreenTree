@@ -1,0 +1,117 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: tgtree.btok.caption
+msgctxt "tgtree.btok.caption"
+msgid "&Ok"
+msgstr ""
+
+#: tgtree.caption
+msgid "About Green Tree..."
+msgstr ""
+
+#: tgtree.label1.caption
+msgid "Green Tree Project"
+msgstr ""
+
+#: tgtree.label2.caption
+msgid "Version 2.0"
+msgstr ""
+
+#: tgtree.label3.caption
+msgid "(c) 2005-2025 Massimo Magnano"
+msgstr ""
+
+#: tgtree.menuabout.caption
+msgid "Info..."
+msgstr ""
+
+#: tgtree.menuclose.caption
+msgid "Close"
+msgstr "Chiudi"
+
+#: tgtree.menuhibernate.caption
+msgid "Hibernate..."
+msgstr "Iberna..."
+
+#: tgtree.menulock.caption
+msgid "Lock..."
+msgstr "Blocca..."
+
+#: tgtree.menulogout.caption
+msgid "Log Out..."
+msgstr "Disconnetti..."
+
+#: tgtree.menureboot.caption
+msgid "Reboot..."
+msgstr "Riavvia..."
+
+#: tgtree.menushutdisable.caption
+msgid "Cancel..."
+msgstr "Annulla..."
+
+#: tgtree.menushutdown.caption
+msgctxt "tgtree.menushutdown.caption"
+msgid "Shut Down..."
+msgstr "Spegni..."
+
+#: tgtree.menushutdownm.caption
+msgctxt "tgtree.menushutdownm.caption"
+msgid "Shut Down..."
+msgstr "Spegni..."
+
+#: tgtree.menususpend.caption
+msgid "Suspend..."
+msgstr "Sospendi..."
+
+#: tgtree_timerform.btok.caption
+msgctxt "tgtree_timerform.btok.caption"
+msgid "&Ok"
+msgstr ""
+
+#: tgtree_timerform.btok1.caption
+msgid "&Cancel"
+msgstr "&Annulla"
+
+#: tgtree_timerform.caption
+msgid "Timer..."
+msgstr ""
+
+#: tgtree_timerform.cbforce.caption
+msgid "Force"
+msgstr "Forza"
+
+#: tgtree_timerform.cbintype.text
+msgid "minutes"
+msgstr "minuti"
+
+#: tgtree_timerform.eddate.text
+msgid "edDate"
+msgstr ""
+
+#: tgtree_timerform.edtime.text
+msgid "edTime"
+msgstr ""
+
+#: tgtree_timerform.rbdatetime.caption
+msgid "Date / Time"
+msgstr "Data / Ora"
+
+#: tgtree_timerform.rbin.caption
+msgid "In "
+msgstr "Tra "
+
+#: tgtree_timerform.rbnow.caption
+msgid "Now"
+msgstr "Adesso"
+

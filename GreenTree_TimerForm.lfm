@@ -1,0 +1,131 @@
+object GTree_TimerForm: TGTree_TimerForm
+  Left = 345
+  Height = 240
+  Top = 34
+  Width = 331
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Timer...'
+  ClientHeight = 240
+  ClientWidth = 331
+  DesignTimePPI = 120
+  Position = poScreenCenter
+  LCLVersion = '4.99.0.0'
+  object rbIn: TRadioButton
+    Left = 16
+    Height = 24
+    Top = 0
+    Width = 37
+    Caption = 'In '
+    Checked = True
+    TabOrder = 4
+    TabStop = True
+    OnClick = rbInChange
+  end
+  object edTime: TTimeEdit
+    Left = 191
+    Height = 28
+    Top = 94
+    Width = 129
+    ButtonWidth = 29
+    NumGlyphs = 1
+    Enabled = False
+    MaxLength = 0
+    TabOrder = 0
+    Text = 'edTime'
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 39
+    Top = 201
+    Width = 331
+    Align = alBottom
+    ClientHeight = 39
+    ClientWidth = 331
+    TabOrder = 1
+    object btOk: TButton
+      Left = 64
+      Height = 31
+      Top = 4
+      Width = 94
+      Caption = '&Ok'
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object btOk1: TButton
+      Left = 168
+      Height = 31
+      Top = 4
+      Width = 94
+      Caption = '&Cancel'
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+  object edDate: TDateEdit
+    Left = 58
+    Height = 28
+    Top = 94
+    Width = 129
+    CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+    DateOrder = doNone
+    ButtonWidth = 29
+    NumGlyphs = 1
+    Enabled = False
+    MaxLength = 0
+    TabOrder = 2
+    Text = 'edDate'
+  end
+  object rbDateTime: TRadioButton
+    Left = 16
+    Height = 24
+    Top = 62
+    Width = 100
+    Caption = 'Date / Time'
+    TabOrder = 3
+    OnClick = rbDateTimeChange
+  end
+  object edIn: TSpinEdit
+    Left = 58
+    Height = 28
+    Top = 25
+    Width = 95
+    MinValue = 1
+    TabOrder = 5
+    Value = 10
+  end
+  object cbInType: TComboBox
+    Left = 167
+    Height = 28
+    Top = 25
+    Width = 125
+    ItemHeight = 20
+    ItemIndex = 0
+    Items.Strings = (
+      'minutes'
+      'hours'
+      'seconds'
+      'days'
+    )
+    Style = csDropDownList
+    TabOrder = 6
+    Text = 'minutes'
+  end
+  object rbNow: TRadioButton
+    Left = 16
+    Height = 24
+    Top = 134
+    Width = 52
+    Caption = 'Now'
+    TabOrder = 7
+    OnClick = rbNowChange
+  end
+  object cbForce: TCheckBox
+    Left = 16
+    Height = 24
+    Top = 170
+    Width = 57
+    Caption = 'Force'
+    TabOrder = 8
+  end
+end
