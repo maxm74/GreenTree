@@ -52,6 +52,10 @@ msgstr "Blocca..."
 msgid "Log Out..."
 msgstr "Disconnetti..."
 
+#: tgtree.menuprinters.caption
+msgid "Printers..."
+msgstr "Stampanti..."
+
 #: tgtree.menureboot.caption
 msgid "Reboot..."
 msgstr "Riavvia..."
@@ -114,4 +118,3 @@ msgstr "Tra "
 #: tgtree_timerform.rbnow.caption
 msgid "Now"
 msgstr "Adesso"
-

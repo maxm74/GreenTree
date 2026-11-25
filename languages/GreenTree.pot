@@ -42,6 +42,10 @@ msgstr ""
 msgid "Log Out..."
 msgstr ""
 
+#: tgtree.menuprinters.caption
+msgid "Printers..."
+msgstr ""
+
 #: tgtree.menureboot.caption
 msgid "Reboot..."
 msgstr ""
