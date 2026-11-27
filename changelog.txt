@@ -1,6 +1,7 @@
 Green Tree CHANGE LOG
 ======================
 
-2026/11/25 Added Printers Menù; Added Setup
+2026/11/27 Added Check XMas; Changed Setup for Current/All User; Added functions for Always Visible Tray Icon
+        25 Added Printers Menù; Added Setup
 
 2025/12/05 Initial Commit (porting from old Delphi Project)

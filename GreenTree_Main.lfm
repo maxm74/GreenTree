@@ -11,6 +11,7 @@ object GTree: TGTree
   Position = poScreenCenter
   ShowInTaskBar = stNever
   LCLVersion = '4.99.0.0'
+  OnCreate = FormCreate
   object btOk: TButton
     Left = 90
     Height = 25

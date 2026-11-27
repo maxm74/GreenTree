@@ -38,6 +38,7 @@ type
     timerShutDown: TTimer;
     TrayIcon: TTrayIcon;
     procedure btOkClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure menuAboutClick(Sender: TObject);
     procedure menuCloseClick(Sender: TObject);
     procedure menuPrintersClick(Sender: TObject);
@@ -52,6 +53,7 @@ type
     ShutDownForce: Boolean;
 
     procedure FillPrintersMenu;
+    procedure CheckXMas;
 
   public
 
@@ -64,7 +66,153 @@ implementation
 
 {$R *.lfm}
 
-uses Windows, WinSpool, GreenTree_TimerForm;
+uses Windows, Registry, WinSpool, StrUtils, DateUtils, GreenTree_TimerForm;
+
+
+function IsWindows11OrGreater: Boolean;
+var
+  Reg: TRegistry;
+  BuildNum: Integer;
+begin
+  Result := False;
+  Reg := TRegistry.Create(KEY_READ);
+  try
+    Reg.RootKey := HKEY_LOCAL_MACHINE;
+    if Reg.OpenKeyReadOnly('SOFTWARE\Microsoft\Windows NT\CurrentVersion') then
+    begin
+      if Reg.ValueExists('CurrentBuildNumber') then
+      begin
+        BuildNum := StrToIntDef(Reg.ReadString('CurrentBuildNumber'), 0);
+        Result := BuildNum >= 22000;
+      end;
+      Reg.CloseKey;
+    end;
+  finally
+    Reg.Free;
+  end;
+end;
+
+// Decodifica ROT13 usata da Windows 10 per i percorsi in IconStreams
+function DecodeROT13(const S: string): string;
+var
+  I: Integer;
+  C: Char;
+begin
+  Result := S;
+  for I := 1 to Length(Result) do
+  begin
+    C := Result[I];
+    if (C >= 'a') and (C <= 'z') then
+      Result[I] := Chr(Ord('a') + ((Ord(C) - Ord('a') + 13) mod 26))
+    else if (C >= 'A') and (C <= 'Z') then
+      Result[I] := Chr(Ord('A') + ((Ord(C) - Ord('A') + 13) mod 26));
+  end;
+end;
+
+function TrayIconAlwaysVisible(const ARootKey: HKEY; TargetExe: String): Boolean;
+const
+  // Struttura IconStreams di Windows 10: header 20 byte, blocchi da 1640 byte
+  WIN10_HEADER_SIZE = 20;
+  WIN10_ITEM_SIZE = 1640;
+  WIN10_PATH_OFFSET = 4;      // Percorso Unicode (528 byte = 264 WideChar)
+  WIN10_VISIBILITY_OFFSET = 528; // Byte di stato: 0=Auto, 1=Nascondi, 2=Mostra sempre
+var
+  Reg: TRegistry;
+  Sottochiavi: TStringList;
+  I, DataSize, ItemOffset: Integer;
+  RegExePath, ChiaveBase: string;
+  Buffer: TBytes;
+  WidePath: WideString;
+  Modificato: Boolean;
+begin
+  Result:= False;
+
+  Reg := TRegistry.Create(KEY_READ or KEY_WRITE);
+  try
+    Reg.RootKey := ARootKey;
+
+    if IsWindows11OrGreater then
+    begin
+      // ================= WINDOWS 11 =================
+      ChiaveBase := 'Control Panel\NotifyIconSettings';
+      Sottochiavi := TStringList.Create;
+      try
+        if Reg.OpenKey(ChiaveBase, False) then
+        begin
+          Reg.GetKeyNames(Sottochiavi);
+          Reg.CloseKey;
+
+          for I := 0 to Sottochiavi.Count - 1 do
+          begin
+            if Reg.OpenKey(ChiaveBase + '\' + Sottochiavi[I], False) then
+            begin
+              if Reg.ValueExists('ExecutablePath') then
+              begin
+                RegExePath := Reg.ReadString('ExecutablePath');
+                if SameText(RegExePath, TargetExe) then
+                  Reg.WriteInteger('IsPromoted', 1);
+              end;
+              Reg.CloseKey;
+            end;
+          end;
+        end;
+      finally
+        Sottochiavi.Free;
+      end;
+    end
+    else
+    begin
+      // ================= WINDOWS 10 =================
+      ChiaveBase := 'Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify';
+      if Reg.OpenKey(ChiaveBase, False) then
+      begin
+        if Reg.ValueExists('IconStreams') then
+        begin
+          DataSize := Reg.GetDataSize('IconStreams');
+          if DataSize > WIN10_HEADER_SIZE then
+          begin
+            SetLength(Buffer, DataSize);
+            Reg.ReadBinaryData('IconStreams', Buffer[0], DataSize);
+
+            Modificato := False;
+            ItemOffset := WIN10_HEADER_SIZE;
+
+            while (ItemOffset + WIN10_ITEM_SIZE) <= DataSize do
+            begin
+              // Estrae la stringa Unicode del percorso (max 260 caratteri)
+              SetString(WidePath, PWideChar(@Buffer[ItemOffset + WIN10_PATH_OFFSET]), 260);
+              // Tronca al terminatore nullo
+              WidePath := PWideChar(WidePath);
+              RegExePath := DecodeROT13(string(WidePath));
+
+              // Verifica corrispondenza (Windows 10 può salvare percorsi con prefisso \??\ o KnownFolder)
+              if SameText(RegExePath, TargetExe) or
+                 SameText(RegExePath, '\??\' + TargetExe) or
+                 EndsText('\' + ExtractFileName(TargetExe), RegExePath) then
+              begin
+                if Buffer[ItemOffset + WIN10_VISIBILITY_OFFSET] <> $02 then
+                begin
+                  Buffer[ItemOffset + WIN10_VISIBILITY_OFFSET] := $02;
+                  Modificato := True;
+                end;
+              end;
+
+              Inc(ItemOffset, WIN10_ITEM_SIZE);
+            end;
+
+            if Modificato then
+              Reg.WriteBinaryData('IconStreams', Buffer[0], DataSize);
+          end;
+        end;
+        Reg.CloseKey;
+      end;
+    end;
+    Result:= True;
+
+  finally
+    Reg.Free;
+  end;
+end;
 
 { TGTree }
 
@@ -245,6 +393,22 @@ begin
   end;
 end;
 
+procedure TGTree.CheckXMas;
+var
+  Anno, Mese, Giorno: Word;
+
+begin
+  DecodeDate(Now, Anno, Mese, Giorno);
+
+  if ((Mese = 12) and (Giorno >= 8)) or
+      ((Mese = 1) and (Giorno <= 6)) then
+  begin
+    TrayIcon.Icons:= ImageListTrayXMAS;
+    TrayIcon.AnimateInterval:= 1000;
+    TrayIcon.Animate :=True;
+  end;
+end;
+
 procedure TGTree.menuAboutClick(Sender: TObject);
 begin
   Visible:= True;
@@ -254,6 +418,11 @@ end;
 procedure TGTree.btOkClick(Sender: TObject);
 begin
   Visible:= False;
+end;
+
+procedure TGTree.FormCreate(Sender: TObject);
+begin
+  CheckXMas;
 end;
 
 end.
